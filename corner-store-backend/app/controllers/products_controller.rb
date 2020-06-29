@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
     def create 
-        product = Product.create(products_params)
+        # product = Product.create(products_params)
     end
 
     def show 
@@ -9,7 +9,8 @@ class ProductsController < ApplicationController
     end
 
     def index 
-
+        producs = Product.all 
+        render: 
     end
 
     private 
@@ -18,6 +19,5 @@ class ProductsController < ApplicationController
         params.require(:products).require(:title, :description, :price, :quantity)
     end
 
-    # did this freaking work?
 
 end
