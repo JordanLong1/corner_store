@@ -18,4 +18,6 @@ class ProductsController < ApplicationController
         params.require(:products).require(:title, :description, :price, :quantity)
     end
 
+    # did this freaking work?
+
 end
