@@ -8,6 +8,10 @@ class Products {
         this.quantity = quantity;
         this.category = category;
         this.cartId = cart_id;
-
     }
+
+    collectionOfProducts() {
+        console.log(this)
+    }
+
 }
