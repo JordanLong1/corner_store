@@ -1,17 +1,39 @@
 class CartsController < ApplicationController
 
-    def create 
+    
+        def show 
+            cart = Cart.find_by(id: params[:id])
+            render json: cart
+        end
 
-    end
+        def new 
+            cart = Cart.new(cart_params)
 
-    def show 
+        end
+        
+        def create 
+            cart = Cart.new(cart_params)
+            if cart
+                cart.save 
+                render json: cart 
+            else 
+                render json: {error: "Test error"}
+            end
+        end
 
-    end
+        def edit 
+
+        end
+
+        def update
+
+        end
 
     private 
 
     def cart_params
-        
+        params.require(:cart).require(:item_count, :total_price)
+
     end
 
     
