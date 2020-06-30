@@ -9,6 +9,13 @@ let api = new ApiService;
 document.addEventListener('DOMContentLoaded', function(event) {
     
     api.getProducts()
-    .then(products => console.log(products))
+    .then(products =>  {
+        products.forEach(product => {
+            const newProd = new Products(product)
+
+            // make func pass newProd
+            newProd.collectionOfProducts()
+        })
+    })
 })
 
