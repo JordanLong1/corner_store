@@ -11,6 +11,10 @@ class ApiService {
         .then(resp => resp.json())
     }
 
+    getCertainProduct(prodId) {
+        console.log(prodId)
+    }
+
 
 
 }
