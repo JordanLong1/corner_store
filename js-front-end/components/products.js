@@ -28,10 +28,20 @@ class Products {
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
         moreInfoBtn.textContent = 'Click to get more info!' // works
-        console.log(moreInfoBtn)
+        
+
+        titleHeader.appendChild(pricePtag) //working
+        titleHeader.appendChild(moreInfoBtn)
+        
+        productDiv.appendChild(titleHeader)
+        
+        
+        console.log(productDiv)
+
         
 
         // create a button to get more info?
+        // come back to BUTTON to add EVENT LISTENER
 
         
     }
