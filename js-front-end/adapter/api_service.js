@@ -12,7 +12,8 @@ class ApiService {
     }
 
     getCertainProduct(prodId) {
-        console.log(prodId)
+        return fetch(`${this.baseUrl}/products/${prodId}`)
+        .then(resp => resp.json())
     }
 
 
