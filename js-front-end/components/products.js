@@ -40,6 +40,9 @@ class Products {
      
 
             api.getCertainProduct(prodId)
+            .then(element => {
+                console.log(element)
+            })
         })
 
         ulTag.appendChild(priceLiTag)
