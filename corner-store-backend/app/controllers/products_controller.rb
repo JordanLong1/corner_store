@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     private 
 
     def products_params 
-        params.require(:products).require(:title, :description, :price, :quantity, :cart_id)
+        params.require(:products).require(:title, :description, :price, :quantity, :cart_id, :category, :id)
     end
 
 
