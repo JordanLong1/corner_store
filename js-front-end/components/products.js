@@ -11,7 +11,23 @@ class Products {
     }
 
     collectionOfProducts() {
-        console.log(this)
+        // console.log(this) // last line working. 
+
+        let productDiv = document.getElementById('product-id') // this line is working. gets product div
+
+        productDiv.classList.add('productDiv') // this is working
+
+
+        let titleHeader = document.createElement('h4') // this is working
+
+        titleHeader.textContent = this.title.title // this is working
+
+        let pricePtag = document.createElement('p') // this is working
+
+        console.log(pricePtag)
+
+
+        
     }
 
 }
