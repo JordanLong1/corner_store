@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         products.forEach(product => {
             const newProd = new Products(product)
 
-            // make func pass newProd
             newProd.collectionOfProducts()
         })
     })
