@@ -1,13 +1,14 @@
 // products clazz
 
 class Products {
-    constructor({title, description, price, quantity, category, cart_id}) {
+    constructor({title, description, price, quantity, category, cart_id, id}) {
         this.title = title; 
         this.description = description;
         this.price = price; 
         this.quantity = quantity;
         this.category = category;
         this.cartId = cart_id;
+        this.id = id;
     }
 
     collectionOfProducts() {
@@ -21,22 +22,35 @@ class Products {
 
         titleHeader.textContent = this.title // this is working
 
-        let pricePtag = document.createElement('p') // this is working
+        let ulTag = document.createElement('ul')
 
-        pricePtag.textContent = this.price // this is working
+        let priceLiTag = document.createElement('li') // this is working
+        priceLiTag.setAttribute('certain-product-id', this.id)
+        priceLiTag.textContent = this.price // this is working
 
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
         moreInfoBtn.textContent = 'Click to get more info!' // works
+
+        moreInfoBtn.addEventListener("click", function(event) {
+            event.preventDefault()
+            let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
+
+            let api = new ApiService;
+     
+
+            api.getCertainProduct(prodId)
+        })
+
+        ulTag.appendChild(priceLiTag)
         
 
-        titleHeader.appendChild(pricePtag) //working
+        titleHeader.appendChild(ulTag) //working
         titleHeader.appendChild(moreInfoBtn)
         
         productDiv.appendChild(titleHeader)
         
         
-        console.log(productDiv)
 
         
 
