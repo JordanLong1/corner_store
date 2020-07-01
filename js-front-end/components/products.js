@@ -1,7 +1,7 @@
 // products clazz
 
 class Products {
-    constructor(title, description, price, quantity, category, cart_id) {
+    constructor({title, description, price, quantity, category, cart_id}) {
         this.title = title; 
         this.description = description;
         this.price = price; 
@@ -11,7 +11,6 @@ class Products {
     }
 
     collectionOfProducts() {
-        // console.log(this) // last line working. 
 
         let productDiv = document.getElementById('product-id') // this line is working. gets product div
 
@@ -20,12 +19,19 @@ class Products {
 
         let titleHeader = document.createElement('h4') // this is working
 
-        titleHeader.textContent = this.title.title // this is working
+        titleHeader.textContent = this.title // this is working
 
         let pricePtag = document.createElement('p') // this is working
 
-        console.log(pricePtag)
+        pricePtag.textContent = this.price // this is working
 
+        let moreInfoBtn = document.createElement("BUTTON") // works 
+        moreInfoBtn.classList.add('btn') // works
+        moreInfoBtn.textContent = 'Click to get more info!' // works
+        console.log(moreInfoBtn)
+        
+
+        // create a button to get more info?
 
         
     }
