@@ -13,9 +13,12 @@ class Products {
 
     collectionOfProducts() {
 
-        let productDiv = document.getElementById('product-id') // this line is working. gets product div
+        let container = document.getElementById('container') // this line is working. gets product div
 
-        productDiv.classList.add('productDiv') // this is working
+        container.classList.add('container-div') // this is working
+
+        let eachProductDiv = document.createElement('div')
+        eachProductDiv.classList.add('each-product')
 
 
         let titleHeader = document.createElement('h4') // this is working
@@ -42,6 +45,7 @@ class Products {
             api.getCertainProduct(prodId)
             .then(product => {
                 
+
                 const newProd = new Products(product)
 
                 newProd.singleProduct(product)
@@ -54,15 +58,49 @@ class Products {
         titleHeader.appendChild(ulTag) //working
         titleHeader.appendChild(moreInfoBtn)
         
-        productDiv.appendChild(titleHeader)
+        eachProductDiv.appendChild(titleHeader)
+
+        container.appendChild(eachProductDiv)
+
+
     }
 
     singleProduct(prod) {
-        console.log(prod)
 
-        let certainProductDiv = document.createElement('div')
+        let certainProductDiv = document.createElement('div');
 
-        certainProductDiv.classList.add('certain-product')
+        certainProductDiv.classList.add('certain-product');
+
+        let productName = document.createElement('h2');
+
+        productName.textContent = this.title // working
+
+        let newUl = document.createElement('ul');
+
+        let newLi = document.createElement('li');
+
+        newLi.textContent = `${this.price}`;
+
+        newUl.appendChild(newLi)
+
+        let productDescription = document.createElement('p');
+        productDescription.textContent = `${this.description}`; 
+        
+        let productCategory = document.createElement('span');
+        productCategory.textContent = this.category;
+
+        productDescription.appendChild(productCategory)
+
+        certainProductDiv.appendChild(productName); 
+
+        certainProductDiv.appendChild(newUl);
+        certainProductDiv.appendChild(productDescription);
+        // certainProductDiv.appendChild(productCategory);
+        
+        document.body.appendChild(certainProductDiv)
+        
+
+        // console.log(certainProductDiv)
 
         
     }
