@@ -27,13 +27,10 @@ class Products {
 
         let ulTag = document.createElement('ul')
         
-        // let priceLabel = document.createElement('LABEL')
-        // priceLabel.innerHTML = " - Price"
         let priceLiTag = document.createElement('li') // this is working
         priceLiTag.setAttribute('certain-product-id', this.id)
         priceLiTag.textContent = `Price - $${this.price}` 
         
-        // priceLiTag.appendChild(priceLabel)
 
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
@@ -93,12 +90,18 @@ class Products {
         let productCategory = document.createElement('p');
         productCategory.textContent = `Category - ${this.category}`;
 
+        let cartBtn = document.createElement("BUTTON");
+        cartBtn.classList.add('add-cart');
+
+        cartBtn.textContent = "Add to cart"
+
 
         certainProductDiv.appendChild(productName); 
 
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
         certainProductDiv.appendChild(productCategory);
+        certainProductDiv.appendChild(cartBtn);
         
         document.body.appendChild(certainProductDiv)
         
