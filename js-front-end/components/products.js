@@ -26,10 +26,14 @@ class Products {
         titleHeader.textContent = this.title // this is working
 
         let ulTag = document.createElement('ul')
-
+        
+        // let priceLabel = document.createElement('LABEL')
+        // priceLabel.innerHTML = " - Price"
         let priceLiTag = document.createElement('li') // this is working
         priceLiTag.setAttribute('certain-product-id', this.id)
-        priceLiTag.textContent = this.price // this is working
+        priceLiTag.textContent = `Price - $${this.price}` 
+        
+        // priceLiTag.appendChild(priceLabel)
 
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
@@ -65,7 +69,7 @@ class Products {
 
     }
 
-    singleProduct(prod) {
+    singleProduct() {
 
         let certainProductDiv = document.createElement('div');
 
@@ -79,29 +83,25 @@ class Products {
 
         let newLi = document.createElement('li');
 
-        newLi.textContent = `${this.price}`;
+        newLi.textContent = `Price - $${this.price}`;
 
         newUl.appendChild(newLi)
 
         let productDescription = document.createElement('p');
-        productDescription.textContent = `${this.description}`; 
+        productDescription.textContent = `About - ${this.description}`; 
         
-        let productCategory = document.createElement('span');
-        productCategory.textContent = this.category;
+        let productCategory = document.createElement('p');
+        productCategory.textContent = `Category - ${this.category}`;
 
-        productDescription.appendChild(productCategory)
 
         certainProductDiv.appendChild(productName); 
 
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
-        // certainProductDiv.appendChild(productCategory);
+        certainProductDiv.appendChild(productCategory);
         
         document.body.appendChild(certainProductDiv)
         
-
-        // console.log(certainProductDiv)
-
         
     }
 
