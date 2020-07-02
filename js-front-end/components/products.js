@@ -40,8 +40,11 @@ class Products {
      
 
             api.getCertainProduct(prodId)
-            .then(element => {
-                console.log(element)
+            .then(product => {
+                
+                const newProd = new Products(product)
+
+                newProd.singleProduct(product)
             })
         })
 
@@ -52,13 +55,14 @@ class Products {
         titleHeader.appendChild(moreInfoBtn)
         
         productDiv.appendChild(titleHeader)
-        
-        
+    }
 
-        
+    singleProduct(prod) {
+        console.log(prod)
 
-        // create a button to get more info?
-        // come back to BUTTON to add EVENT LISTENER
+        let certainProductDiv = document.createElement('div')
+
+        certainProductDiv.classList.add('certain-product')
 
         
     }
