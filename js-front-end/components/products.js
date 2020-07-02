@@ -68,6 +68,8 @@ class Products {
 
     singleProduct() {
 
+
+
         let certainProductDiv = document.createElement('div');
 
         certainProductDiv.classList.add('certain-product');
@@ -90,10 +92,25 @@ class Products {
         let productCategory = document.createElement('p');
         productCategory.textContent = `Category - ${this.category}`;
 
+
+
+        let addBtn = document.createElement("BUTTON")
+        addBtn.setAttribute("id", "plus")
+        addBtn.textContent = "+"
+
+        let minusBtn = document.createElement("BUTTON")
+        addBtn.setAttribute("id", "minus")
+        minusBtn.textContent = "-"
+
+      
+
+        
+
         let cartBtn = document.createElement("BUTTON");
         cartBtn.classList.add('add-cart');
 
         cartBtn.textContent = "Add to cart"
+    
 
 
         certainProductDiv.appendChild(productName); 
@@ -101,6 +118,8 @@ class Products {
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
         certainProductDiv.appendChild(productCategory);
+        certainProductDiv.appendChild(addBtn)
+        certainProductDiv.appendChild(minusBtn);
         certainProductDiv.appendChild(cartBtn);
         
         document.body.appendChild(certainProductDiv)
