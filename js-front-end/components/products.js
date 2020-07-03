@@ -110,6 +110,13 @@ class Products {
         cartBtn.classList.add('add-cart');
 
         cartBtn.textContent = "Add to cart"
+
+        cartBtn.addEventListener('click', function(e) {
+            event.preventDefault()
+            // console.log(this)
+            console.log(this.parentElement.attributes[0].ownerElement.innerText)
+
+        })
     
 
 
