@@ -22,8 +22,26 @@ class Cart {
     createDivForCartIcon() {
 
         let iconTag = document.getElementById('icon-id')
+
+        let cartObject = this;
         iconTag.addEventListener("click", function(event) {
-            console.log(event)
+
+            let cartDiv = document.createElement('div');
+            cartDiv.setAttribute('class', 'cart-div-on-click');
+
+            let cartDivUl = document.createElement('ul'); 
+
+            let liForItemCount = document.createElement('li'); 
+            liForItemCount.textContent = `Number of items - ${cartObject.itemCount}`
+
+            let liForCartTotalPrice = document.createElement('li'); 
+
+            liForCartTotalPrice.textContent = `Total Price - ${cartObject.totalPrice}`;
+
+            cartDivUl.appendChild(liForItemCount); 
+            cartDivUl.appendChild(liForCartTotalPrice); 
+
+            cartDiv.appendChild(cartDivUl);     
 
         })
     }
