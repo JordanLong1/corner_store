@@ -15,6 +15,7 @@ class CartsController < ApplicationController
             cart = Cart.new(cart_params)
             if cart
                 cart.save 
+                # binding.pry
                 render json: cart 
             else 
                 render json: {error: "Test error"}
@@ -32,7 +33,7 @@ class CartsController < ApplicationController
     private 
 
     def cart_params
-        params.require(:cart).require(:item_count, :total_price)
+        params.require(:cart).permit(:item_count, :total_price)
 
     end
 
