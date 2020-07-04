@@ -16,5 +16,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
             newProd.collectionOfProducts()
         })
     })
+
+    api.createNewCart()
+    .then(cart => {
+
+        let newCart = new Cart(cart)
+
+        console.log(newCart)
+    })
 })
 
