@@ -8,21 +8,24 @@ class Cart {
     }
 
     createCartIcon() {
-        // console.log(this)
         let iTag = document.createElement('i');
         iTag.setAttribute("class", "fas fa-shopping-cart");
-    //    let cartBtn = document.createElement('BUTTON')
+        iTag.setAttribute("id", "icon-id");
 
         document.body.appendChild(iTag)
 
 
-        iTag.addEventListener('click', function(event) {
-            console.log(event)
-        })
-
-
+        this.createDivForCartIcon()
 
     }
 
+    createDivForCartIcon() {
+
+        let iconTag = document.getElementById('icon-id')
+        iconTag.addEventListener("click", function(event) {
+            console.log(event)
+
+        })
+    }
 
 }
