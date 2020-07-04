@@ -7,5 +7,22 @@ class Cart {
         this.id = id;
     }
 
-    
+    createCartIcon() {
+        // console.log(this)
+        let iTag = document.createElement('i');
+        iTag.setAttribute("class", "fas fa-shopping-cart");
+    //    let cartBtn = document.createElement('BUTTON')
+
+        document.body.appendChild(iTag)
+
+
+        iTag.addEventListener('click', function(event) {
+            console.log(event)
+        })
+
+
+
+    }
+
+
 }
