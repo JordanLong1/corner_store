@@ -16,6 +16,23 @@ class ApiService {
         .then(resp => resp.json())
     }
 
+    createNewCart() {
+       
+        return fetch(`${this.baseUrl}/carts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                item_count: 0,
+                total_price: 0.00
+         })
+        }) 
+        .then(resp => resp.json())
+        
+    }
+
 
 
 }
