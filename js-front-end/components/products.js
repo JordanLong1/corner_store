@@ -1,13 +1,13 @@
 // products clazz
 
 class Products {
-    constructor({title, description, price, quantity, category, cart_id, id}) {
+    constructor({title, description, price, quantity, category, id}) {
         this.title = title; 
         this.description = description;
         this.price = price; 
         this.quantity = quantity;
         this.category = category;
-        this.cartId = cart_id;
+        // this.cartId = cart_id;
         this.id = id;
     }
 
@@ -36,10 +36,9 @@ class Products {
         moreInfoBtn.classList.add('btn') // works
         moreInfoBtn.textContent = 'Click to get more info!' // works
 
-        moreInfoBtn.addEventListener("click", function(event) {
+        moreInfoBtn.addEventListener("click", function(event) { //TAKE THIS OUT AND SEPERATE IT 
             event.preventDefault()
             let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
-
             let api = new ApiService;
      
 
@@ -68,8 +67,6 @@ class Products {
 
     singleProduct() {
 
-
-
         let certainProductDiv = document.createElement('div');
 
         certainProductDiv.classList.add('certain-product');
@@ -93,33 +90,41 @@ class Products {
         productCategory.textContent = `Category - ${this.category}`;
 
 
-
-        let addBtn = document.createElement("BUTTON")
+        
+        let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         addBtn.setAttribute("id", "plus")
         addBtn.textContent = "+"
 
-        let minusBtn = document.createElement("BUTTON")
+        // create function to pass event listener to. 
+
+        let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         addBtn.setAttribute("id", "minus")
         minusBtn.textContent = "-"
 
-      
-
-        
+        // create function to add event listener to 
+        // this.addToCart()
 
         let cartBtn = document.createElement("BUTTON");
         cartBtn.classList.add('add-cart');
-
-        cartBtn.textContent = "Add to cart"
-
-        cartBtn.addEventListener('click', function(e) {
-            event.preventDefault()
-            // console.log(this)
-            console.log(this.parentElement.attributes[0].ownerElement.innerText)
-
-        })
+        cartBtn.setAttribute('id', 'cart-button-id')
     
+        cartBtn.textContent = "Add to cart"
+        // let obj = this;
+        cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
+            event.preventDefault()
 
+            let cartDivId = document.getElementById('cart-div-id-on-click').dataset.id
+            let api = new ApiService;
 
+            api.updateCartWithProduct(cartDivId)
+            .then(product => {
+                console.log(product)
+            })
+            
+                
+        })
+       
+    
         certainProductDiv.appendChild(productName); 
 
         certainProductDiv.appendChild(newUl);
@@ -130,8 +135,24 @@ class Products {
         certainProductDiv.appendChild(cartBtn);
         
         document.body.appendChild(certainProductDiv)
-        
-        
     }
+
+    // addToCart() {
+
+
+    //     let cartBtn = document.createElement("BUTTON");
+    //     cartBtn.classList.add('add-cart');
+    //     cartBtn.setAttribute('id', 'cart-button-id')
+    
+    //     cartBtn.textContent = "Add to cart"
+    //     cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
+    //         event.preventDefault()
+    //         // console.log(this)
+    //         // ALSO PASS PRODUCT ID
+    //         console.log(obj)
+    
+    //     })
+    // }
+    
 
 }
