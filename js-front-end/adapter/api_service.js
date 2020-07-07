@@ -33,8 +33,7 @@ class ApiService {
         
     }
 
-    updateCartWithProduct(cartDivId) {
-        console.log(event) // FIND PRODUCT OBJECT SOMEHOW AND PLUG IN CORRECT DATA in stringify
+    updateCartWithProduct(cartDivId, item) {
         return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
             method: "PATCH", 
             headers: {
@@ -42,11 +41,11 @@ class ApiService {
                 "Accept": "application/json"
             }, 
             body: JSON.stringify({
-                title: this.title, 
-                description: this.description, 
-                price: this.price, 
-                quantity: this.quantity, 
-                category: this.category
+                title: item.title, 
+                description: item.description, 
+                price: item.price, 
+                quantity: item.quantity, 
+                category: item.category
             })
         })
         .then(resp => resp.json())
