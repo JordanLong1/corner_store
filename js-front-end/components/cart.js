@@ -21,14 +21,19 @@ class Cart {
 
     createDivForCartIcon() {
 
+
+
         let iconTag = document.getElementById('icon-id')
 
         let cartObject = this;
-        iconTag.addEventListener("click", function(event) {
+        iconTag.addEventListener("click", function(event) { // ask jenn about bind here
 
             let cartDiv = document.createElement('div');
             cartDiv.setAttribute('class', 'cart-div-on-click');
+            cartDiv.setAttribute("id", 'cart-div-id-on-click'); 
+            cartDiv.setAttribute("data-id", cartObject.id)
 
+            // console.log(cartDiv)
             let cartDivUl = document.createElement('ul'); 
 
             let liForItemCount = document.createElement('li'); 
@@ -41,7 +46,9 @@ class Cart {
             cartDivUl.appendChild(liForItemCount); 
             cartDivUl.appendChild(liForCartTotalPrice); 
 
-            cartDiv.appendChild(cartDivUl);     
+            cartDiv.appendChild(cartDivUl);    
+            
+            document.body.appendChild(cartDiv)
 
         })
     }
