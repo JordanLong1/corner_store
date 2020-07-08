@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         let newCart = new Cart(cart)
 
-        console.log(newCart)
+        newCart.createCartIcon(cart)
+
+
     })
 })
 
