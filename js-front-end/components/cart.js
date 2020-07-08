@@ -21,36 +21,52 @@ class Cart {
 
     createDivForCartIcon() {
 
-
-
         let iconTag = document.getElementById('icon-id')
 
-        let cartObject = this;
-        iconTag.addEventListener("click", function(event) { // ask jenn about bind here
+        let cartDiv = document.createElement('div');
+            cartDiv.setAttribute('class', 'cart-div');
+            cartDiv.setAttribute("id", 'cart-div-id'); 
+            cartDiv.setAttribute("data-id", this.id)
 
-            let cartDiv = document.createElement('div');
-            cartDiv.setAttribute('class', 'cart-div-on-click');
-            cartDiv.setAttribute("id", 'cart-div-id-on-click'); 
-            cartDiv.setAttribute("data-id", cartObject.id)
-
-            // console.log(cartDiv)
             let cartDivUl = document.createElement('ul'); 
 
             let liForItemCount = document.createElement('li'); 
-            liForItemCount.textContent = `Number of items - ${cartObject.itemCount}`
+            liForItemCount.textContent = `Number of items - ${this.itemCount}`
 
             let liForCartTotalPrice = document.createElement('li'); 
 
-            liForCartTotalPrice.textContent = `Total Price - ${cartObject.totalPrice}`;
+            liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
 
             cartDivUl.appendChild(liForItemCount); 
             cartDivUl.appendChild(liForCartTotalPrice); 
 
             cartDiv.appendChild(cartDivUl);    
-            
-            document.body.appendChild(cartDiv)
 
-        })
+            cartDiv.appendChild(iconTag)
+            
+            document.body.appendChild(cartDiv);
+
+
+        this.createSideNavForCart();
     }
+
+    createSideNavForCart() {
+        let cartContainer = document.getElementById('cart-div-id'); // working
+        let sideNavDiv = document.createElement('div');
+        sideNavDiv.setAttribute('class', 'side-nav');
+        sideNavDiv.setAttribute('id', 'side-nav-id');
+
+        sideNavDiv.style.display = 'hidden';
+        
+        cartContainer.appendChild(sideNavDiv);
+
+        cartContainer.addEventListener('click', function(e) {
+            sideNavDiv.style.display = 'block'; 
+            
+        })
+
+    }
+
+    
 
 }
