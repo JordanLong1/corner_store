@@ -26,21 +26,7 @@ class Cart {
         let cartDiv = document.createElement('div');
             cartDiv.setAttribute('class', 'cart-div');
             cartDiv.setAttribute("id", 'cart-div-id'); 
-            cartDiv.setAttribute("data-id", this.id)
-
-            let cartDivUl = document.createElement('ul'); 
-
-            let liForItemCount = document.createElement('li'); 
-            liForItemCount.textContent = `Number of items - ${this.itemCount}`
-
-            let liForCartTotalPrice = document.createElement('li'); 
-
-            liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
-
-            cartDivUl.appendChild(liForItemCount); 
-            cartDivUl.appendChild(liForCartTotalPrice); 
-
-            cartDiv.appendChild(cartDivUl);    
+            cartDiv.setAttribute("data-id", this.id)  
 
             cartDiv.appendChild(iconTag)
             
@@ -55,16 +41,35 @@ class Cart {
         let sideNavDiv = document.createElement('div');
         sideNavDiv.setAttribute('class', 'side-nav');
         sideNavDiv.setAttribute('id', 'side-nav-id');
+        sideNavDiv.style.display = 'none';
 
-        sideNavDiv.style.display = 'hidden';
+        let sideNavUl = document.createElement('ul'); 
+
+        let liForItemCount = document.createElement('li'); 
+        liForItemCount.textContent = `Number of items - ${this.itemCount}`
+
+        let liForCartTotalPrice = document.createElement('li'); 
+
+        liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
+
+        sideNavUl.appendChild(liForItemCount); 
+        sideNavUl.appendChild(liForCartTotalPrice); 
+
+        sideNavDiv.appendChild(sideNavUl);  
         
         cartContainer.appendChild(sideNavDiv);
 
         cartContainer.addEventListener('click', function(e) {
             sideNavDiv.style.display = 'block'; 
-            
+
         })
 
+        let pageContainer = document.getElementById('container'); 
+
+        pageContainer.addEventListener('click', function(e) {
+            sideNavDiv.style.display = 'none';
+
+        })
     }
 
     
