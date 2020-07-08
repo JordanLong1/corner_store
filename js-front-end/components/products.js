@@ -113,7 +113,7 @@ class Products {
         cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
             event.preventDefault()
 
-            let cartDivId = document.getElementById('cart-div-id-on-click').dataset.id
+            let cartDivId = document.getElementById('cart-div-id').dataset.id
             let api = new ApiService;
 
             api.updateCartWithProduct(cartDivId, obj)
