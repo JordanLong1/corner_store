@@ -1,9 +1,10 @@
-/* body {
-    background-color: blue;
-} */
 
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
+body {
+    margin: 0;
+    margin-left: 200px;
+}
 
  main {
     display: grid;
@@ -47,14 +48,31 @@ h1 {
 
 }
 
-i {
-    font-size: 100px;
-    /* position: relative;
-    left: 75px; */
- 
+ i {
+    font-size: 75px;
+    position: relative;
+    top: 0px;
+    left: 0px; 
+    position:absolute;
+ }
+
+.side-nav{
+    width: 200px; 
+    height: 100vh; 
+    position: fixed; 
+    background-color: #252a32;
+    color: white; 
+    top: 0; 
+    left: 0; 
+    padding: 30px 20px; 
+    display:flex; 
+    flex-direction: column;
+    justify-content: space-between;
 
 }
 
+
+    
 
 
 
