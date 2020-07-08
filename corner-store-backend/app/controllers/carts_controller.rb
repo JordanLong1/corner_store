@@ -23,17 +23,21 @@ class CartsController < ApplicationController
         end
 
         def edit 
-
+            cart = Cart.find_by(id: params[:id])
         end
 
         def update
-
+            cart = Cart.find_by(id: params[:id])
+            cart.products.build(title: params[:title], description: params[:description], price: params[:price], quantity: params[:quantity], category: params[:category])
+            cart.save
+            render json: cart 
+        
         end
 
     private 
 
     def cart_params
-        params.require(:cart).permit(:item_count, :total_price)
+        params.require(:cart).permit(:item_count, :total_price, :product)
 
     end
 
