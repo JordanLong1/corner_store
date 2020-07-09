@@ -7,7 +7,6 @@ class Products {
         this.price = price; 
         this.quantity = quantity;
         this.category = category;
-        // this.cartId = cart_id;
         this.id = id;
     }
 
@@ -101,9 +100,6 @@ class Products {
         addBtn.setAttribute("id", "minus")
         minusBtn.textContent = "-"
 
-        // create function to add event listener to 
-        // this.addToCart()
-
         let cartBtn = document.createElement("BUTTON");
         cartBtn.classList.add('add-cart');
         cartBtn.setAttribute('id', 'cart-button-id')
@@ -119,6 +115,8 @@ class Products {
             api.updateCartWithProduct(cartDivId, obj)
             .then(product => {
                 console.log(product)
+                
+
             })
             
                 
@@ -137,22 +135,7 @@ class Products {
         document.body.appendChild(certainProductDiv)
     }
 
-    // addToCart() {
-
-
-    //     let cartBtn = document.createElement("BUTTON");
-    //     cartBtn.classList.add('add-cart');
-    //     cartBtn.setAttribute('id', 'cart-button-id')
-    
-    //     cartBtn.textContent = "Add to cart"
-    //     cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
-    //         event.preventDefault()
-    //         // console.log(this)
-    //         // ALSO PASS PRODUCT ID
-    //         console.log(obj)
-    
-    //     })
-    // }
+   
     
 
 }
