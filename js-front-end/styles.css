@@ -4,7 +4,22 @@
 body {
     margin: 0;
     margin-left: 200px;
+    display: block;
+    background-image: linear-gradient(to right, tan);
 }
+
+/* body::after {
+    content: "";
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 3.0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+} */
 
  main {
     display: grid;
@@ -15,17 +30,47 @@ body {
 
 }
 
-/* this is working as making them show up as grids side by side*/
 .each-product{
     border-style: solid;
     border-color: white;
-    margin: 1em;
+    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    margin: 3em;
     padding: 5em;
+    background-color: rgba(255, 166, 0, 0.342);
+}
+
+/* .each-product:hover {
+    width: 250px;
+} */
+
+li {
+    text-align: center;
+    position: relative;
+    right: 21px;
+    top: 65px;
 }
 
 
 ul {
     list-style-type: none;
+    text-align: center;
+}
+
+.btn {
+    position: relative;
+    top: 65px;
+}
+
+h4 {
+    position: relative;
+    bottom: 75px;
+    font-size: 25px;
+}
+
+h4:hover {
+    color: #42b0f5;
 }
 
 .container-div {
@@ -36,16 +81,33 @@ ul {
 
 .certain-product {
     display: grid;
-    grid-template-columns: 1fr;
-   width: 10vw;
-    height: 10vw;
+   width: 500px;
+    height: 500px;
+    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 3em;
+    padding: 5em;
+    border-radius: 30px;
+    position: relative;
+    left: 450px;
 } 
+
+p {
+    position: relative;
+    top: 30px;
+}
+
 
 h1 {
     text-align: center;
     font-family: 'Lobster', cursive;
     font-size: 50px;
+}
 
+h1:hover {
+    /* font-size: 65px; */
+    transition-duration: 1s; 
+      transform: scale(1.35);
 }
 
  i {
@@ -60,7 +122,7 @@ h1 {
     width: 200px; 
     height: 100vh; 
     position: fixed; 
-    background-color: #252a32;
+    background-color: #42b0f57a;
     color: white; 
     top: 0; 
     left: 0; 
