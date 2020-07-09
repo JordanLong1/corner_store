@@ -4,8 +4,12 @@ class ProductsController < ApplicationController
     #     # product = Product.create(products_params)
     # end
     def index 
-        products = Product.all 
-        render json: products
+        # products = Product.all 
+        products = Product.distinct.pluck(:title)
+        unique_products = products.map do |p|
+            Product.unique_titles(p)
+        end
+        render json: unique_products.sort
     end
 
     def show 
