@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
+
 body {
     margin: 0;
     margin-left: 200px;
@@ -61,7 +62,41 @@ ul {
 .btn {
     position: relative;
     top: 65px;
+    --accent-color: #0AF;
 }
+
+.btn.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    z-index: -1;
+    background-color: var(--accent-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.btn.btn:hover::before, 
+.btn.btn:focus::before {
+    transform: scaleX(1);
+}
+
+.btn.btn {
+    z-index: 1;
+}
+
+.btn.btn:hover, 
+.btn.btn:focus {
+    color: white;
+}
+
+
+/* .btn:hover {
+    color: #42b0f5;
+} */
 
 h4 {
     position: relative;
@@ -101,7 +136,7 @@ p {
 h1 {
     text-align: center;
     font-family: 'Lobster', cursive;
-    font-size: 50px;
+    font-size: 45px;
 }
 
 h1:hover {
@@ -116,6 +151,7 @@ h1:hover {
     top: 0px;
     left: 0px; 
     position:absolute;
+    color: gray;
  }
 
 .side-nav{
@@ -130,7 +166,19 @@ h1:hover {
     display:flex; 
     flex-direction: column;
     justify-content: space-between;
+}
 
+.product-in-cart {
+    border-style: solid;
+    border-color: white;
+    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    width: 20x;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+    background-color: black;
+  
+    
 }
 
 
