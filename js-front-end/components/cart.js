@@ -73,11 +73,9 @@ class Cart {
     }
 
     putProductInCart(cartWithProduct) {
-        // grab cart div 
-        // grab side nav div
-        // append the div created with product info to the side bar div because side bar div is already appended to cart div
-        // cartWithObject is the cart obbject with the product inside of it
-        const productInfo = cartWithProduct.products[0]
+      
+        const productInfo = cartWithProduct.products[cartWithProduct.products.length - 1]
+        console.log(productInfo)
         let cartDiv = document.getElementById('cart-div-id'); //working
         let sideNavDiv = document.getElementById('side-nav-id'); //working 
         
@@ -98,7 +96,6 @@ class Cart {
         cartProduct.appendChild(cartProductPrice); 
         sideNavDiv.appendChild(cartProduct); 
 
-        console.log(sideNavDiv)
 
 
     }
