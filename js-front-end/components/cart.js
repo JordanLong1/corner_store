@@ -72,6 +72,37 @@ class Cart {
         })
     }
 
+    putProductInCart(cartWithProduct) {
+        // grab cart div 
+        // grab side nav div
+        // append the div created with product info to the side bar div because side bar div is already appended to cart div
+        // cartWithObject is the cart obbject with the product inside of it
+        const productInfo = cartWithProduct.products[0]
+        let cartDiv = document.getElementById('cart-div-id'); //working
+        let sideNavDiv = document.getElementById('side-nav-id'); //working 
+        
+
+        let cartProduct = document.createElement('div'); //working
+        cartProduct.setAttribute('class', 'product-in-cart');
+        cartProduct.setAttribute('id', 'carts-product-id');
+
+        let cartProductHeader = document.createElement('h5'); 
+        cartProductHeader.textContent = `${productInfo.title}`; 
+
+        // will need to create image info
+
+        let cartProductPrice = document.createElement('p'); 
+        cartProductPrice.textContent = `Price - ${productInfo.price}`
+
+        cartProduct.appendChild(cartProductHeader); 
+        cartProduct.appendChild(cartProductPrice); 
+        sideNavDiv.appendChild(cartProduct); 
+
+        console.log(sideNavDiv)
+
+
+    }
+
     
 
 }
