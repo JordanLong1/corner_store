@@ -19,7 +19,6 @@ class Products {
         let eachProductDiv = document.createElement('div')
         eachProductDiv.classList.add('each-product')
 
-
         let titleHeader = document.createElement('h4') // this is working
 
         titleHeader.textContent = this.title // this is working
@@ -37,6 +36,7 @@ class Products {
 
         moreInfoBtn.addEventListener("click", function(event) { //TAKE THIS OUT AND SEPERATE IT 
             event.preventDefault()
+            container.style.display = 'none';
             let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
             let api = new ApiService;
      
@@ -51,14 +51,12 @@ class Products {
             })
         })
 
+       
         ulTag.appendChild(priceLiTag)
         
-
-        titleHeader.appendChild(ulTag) //working
-        titleHeader.appendChild(moreInfoBtn)
-        
         eachProductDiv.appendChild(titleHeader)
-
+        eachProductDiv.appendChild(ulTag)
+        eachProductDiv.appendChild(moreInfoBtn)
         container.appendChild(eachProductDiv)
 
 
@@ -73,6 +71,18 @@ class Products {
         let productName = document.createElement('h2');
 
         productName.textContent = this.title // working
+
+        let closeSpan = document.createElement('span'); 
+        closeSpan.setAttribute('class', 'close'); 
+
+        closeSpan.textContent = 'X';
+
+        closeSpan.addEventListener('click', function(event) {
+            event.preventDefault();
+            certainProductDiv.style.display = 'none';
+            let allProducts = document.getElementById('container'); 
+            allProducts.style.display = 'grid';
+        })
 
         let newUl = document.createElement('ul');
 
@@ -113,8 +123,12 @@ class Products {
             let api = new ApiService;
 
             api.updateCartWithProduct(cartDivId, obj)
-            .then(product => {
-                console.log(product)
+            .then(cartObject => {
+
+                const productInCart = new Cart(cartObject)
+
+
+                productInCart.putProductInCart(cartObject)
                 
 
             })
@@ -124,7 +138,7 @@ class Products {
        
     
         certainProductDiv.appendChild(productName); 
-
+        certainProductDiv.appendChild(closeSpan);
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
         certainProductDiv.appendChild(productCategory);
