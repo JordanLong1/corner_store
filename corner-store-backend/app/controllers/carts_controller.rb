@@ -30,6 +30,7 @@ class CartsController < ApplicationController
             cart = Cart.find_by(id: params[:id])
             cart.products.build(title: params[:title], description: params[:description], price: params[:price], quantity: params[:quantity], category: params[:category])
             cart.save
+            cart.update(item_count: cart.products.count)
             render json: cart 
         
         end
