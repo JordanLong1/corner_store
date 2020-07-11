@@ -46,9 +46,14 @@ class Cart {
         let sideNavUl = document.createElement('ul'); 
 
         let liForItemCount = document.createElement('li'); 
+        liForItemCount.setAttribute('class', 'item-count');
+        liForItemCount.setAttribute('id', 'item-count-id');
         liForItemCount.textContent = `Number of items - ${this.itemCount}`
+        
 
         let liForCartTotalPrice = document.createElement('li'); 
+        liForCartTotalPrice.setAttribute('class', 'total-price');
+        liForCartTotalPrice.setAttribute('id', 'total-price-id')
 
         liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
 
@@ -75,7 +80,7 @@ class Cart {
     putProductInCart(cartWithProduct) {
       
         const productInfo = cartWithProduct.products[cartWithProduct.products.length - 1]
-        console.log(productInfo)
+        // console.log(productInfo)
         let cartDiv = document.getElementById('cart-div-id'); //working
         let sideNavDiv = document.getElementById('side-nav-id'); //working 
         
@@ -96,10 +101,15 @@ class Cart {
         cartProduct.appendChild(cartProductPrice); 
         sideNavDiv.appendChild(cartProduct); 
 
+        let cartCount = document.getElementById('item-count-id')
+        cartCount.textContent = `Number of items - ${this.itemCount}`
+        
+
 
 
     }
 
+   
     
 
 }
