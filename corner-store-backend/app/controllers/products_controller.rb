@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   
     def index 
         products = Product.all 
-
         render json: products
 
     end
@@ -18,7 +17,7 @@ class ProductsController < ApplicationController
     private 
 
     def products_params 
-        params.require(:products).permit(:title, :description, :price, :quantity, :cart_id, :category, :id)
+        params.require(:products).permit(:title, :description, :price, :cart_id, :category, :id)
     end
 
 
