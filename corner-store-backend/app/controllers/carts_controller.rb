@@ -15,7 +15,6 @@ class CartsController < ApplicationController
             cart = Cart.new(cart_params)
             if cart
                 cart.save 
-                # binding.pry
                 render json: cart 
             else 
                 render json: {error: "Test error"}
@@ -31,6 +30,10 @@ class CartsController < ApplicationController
             cp = CartsProducts.create(cart_id: params[:cart_id], product_id: params[:product_id])
             cart = Cart.find(params[:cart_id])
             cart.update(item_count: cart.products.count)
+            total_price = cart.products.reduce(0) {|sum, product | sum + product.price }
+            # binding.pry
+            cart.update(total_price: total_price.round(2))
+            # binding.pry
             render json: cart 
         
         end
