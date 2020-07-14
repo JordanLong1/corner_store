@@ -96,8 +96,52 @@ class Cart {
         let cartProductPrice = document.createElement('p'); 
         cartProductPrice.textContent = `Price - ${productInfo.price}`
 
+        let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
+        addBtn.setAttribute("id", "plus")
+        addBtn.textContent = "+"
+        // this.addButtonInCart(); 
+        addBtn.addEventListener('click', function(e) {
+            event.preventDefault();
+
+            // cart id & product & then pass to api serv to update the cart?
+            let cartDivId = document.getElementById('cart-div-id').dataset.id
+
+            let api = new ApiService; 
+
+            api.updateCartWithProduct(cartDivId, productInfo) 
+            .then(cartObject => {
+                const productInCart = new Cart(cartObject)
+                
+                
+                productInCart.putProductInCart(cartObject)
+            })
+
+            
+         
+        })
+
+
+        let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
+        minusBtn.setAttribute("id", "minus")
+        minusBtn.textContent = "-"
+        minusBtn.addEventListener('click', function(e) {
+            event.preventDefault(); 
+            let cartDivId = document.getElementById('cart-div-id').dataset.id
+
+
+            let api = new ApiService; 
+
+            api.subtractProductFromCart(cartDivId, productInfo)
+
+            .then(resp => console.log(resp))
+        })
+        // this.minusButtonInCart();
+        // in the event listener 
+
         cartProduct.appendChild(cartProductHeader); 
         cartProduct.appendChild(cartProductPrice); 
+        cartProduct.appendChild(addBtn); 
+        cartProduct.appendChild(minusBtn);
         sideNavDiv.appendChild(cartProduct); 
 
         let cartCount = document.getElementById('item-count-id')
@@ -105,11 +149,29 @@ class Cart {
 
         let cartPrice = document.getElementById('total-price-id')
         cartPrice.textContent = `Total Price - ${this.totalPrice}`
-        
-
 
 
     }
+
+    // addButtonInCart() {
+    //     // console.log(this)
+    //     // this = Cart object with item count & total price
+    //     // on every click it should increment the total price and item count
+
+    //     // let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
+    //     // addBtn.setAttribute("id", "plus")
+    //     // addBtn.textContent = "+"
+    // }
+
+    // minusButtonInCart() {
+    //     console.log(this)
+    //     // this = Cart Object with item count, total price and an id 
+    //     // on click it should decrement the item count and subtract the price
+
+    //     // let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
+    //     // minusBtn.setAttribute("id", "minus")
+    //     // minusBtn.textContent = "-"
+    // }
 
    
     
