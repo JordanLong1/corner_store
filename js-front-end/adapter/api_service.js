@@ -34,7 +34,7 @@ class ApiService {
     }
 
     updateCartWithProduct(cartDivId, item) {
-        console.log(item)
+        // console.log(item)
         return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
             method: "PATCH", 
             headers: {
@@ -48,6 +48,22 @@ class ApiService {
         })
         .then(resp => resp.json())
         console.log(cartDivId) // WORKING
+    }
+
+    subtractProductFromCart(cartDivId, productInCart) {
+        console.log(productInCart)
+        return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
+            method: "PATCH", 
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }, 
+            body: JSON.stringify({
+                cart_id: cartDivId,
+                subtract_product_id: productInCart.id
+            })
+        })
+        .then(resp => resp.json())
     }
 
 

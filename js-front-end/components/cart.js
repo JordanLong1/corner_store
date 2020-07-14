@@ -80,12 +80,11 @@ class Cart {
     putProductInCart(cartWithProduct) {
       
         const productInfo = cartWithProduct.products[cartWithProduct.products.length - 1]
-        // console.log(productInfo)
-        let cartDiv = document.getElementById('cart-div-id'); //working
-        let sideNavDiv = document.getElementById('side-nav-id'); //working 
+        let cartDiv = document.getElementById('cart-div-id'); 
+        let sideNavDiv = document.getElementById('side-nav-id');  
         
 
-        let cartProduct = document.createElement('div'); //working
+        let cartProduct = document.createElement('div'); 
         cartProduct.setAttribute('class', 'product-in-cart');
         cartProduct.setAttribute('id', 'carts-product-id');
 
@@ -103,6 +102,9 @@ class Cart {
 
         let cartCount = document.getElementById('item-count-id')
         cartCount.textContent = `Number of items - ${this.itemCount}`
+
+        let cartPrice = document.getElementById('total-price-id')
+        cartPrice.textContent = `Total Price - ${this.totalPrice}`
         
 
 
