@@ -35,8 +35,8 @@ class ApiService {
 
     updateCartWithProduct(cartDivId, item) {
         // console.log(item)
-        return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
-            method: "PATCH", 
+        return fetch (`${this.baseUrl}/carts_products`, {
+            method: "POST", 
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -51,9 +51,9 @@ class ApiService {
     }
 
     subtractProductFromCart(cartDivId, productInCart) {
-        console.log(productInCart)
-        return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
-            method: "PATCH", 
+        console.log(cartDivId)
+        return fetch (`${this.baseUrl}/carts_product/${cartDivId}`, {
+            method: "delete", 
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"

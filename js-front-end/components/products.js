@@ -28,7 +28,6 @@ class Products {
         let priceLiTag = document.createElement('li') // this is working
         priceLiTag.setAttribute('certain-product-id', this.id)
         priceLiTag.textContent = `Price - $${this.price}` 
-        
 
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
@@ -75,7 +74,7 @@ class Products {
         let closeSpan = document.createElement('span'); 
         closeSpan.setAttribute('class', 'close'); 
 
-        closeSpan.textContent = 'X';
+        closeSpan.textContent = 'Close (X)';
 
         closeSpan.addEventListener('click', function(event) {
             event.preventDefault();
@@ -87,6 +86,7 @@ class Products {
         let newUl = document.createElement('ul');
 
         let newLi = document.createElement('li');
+        newLi.setAttribute('class', 'single-product-li')
 
         newLi.textContent = `Price - $${this.price}`;
 
@@ -98,18 +98,6 @@ class Products {
         let productCategory = document.createElement('p');
         productCategory.textContent = `Category - ${this.category}`;
 
-
-        
-        let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
-        addBtn.setAttribute("id", "plus")
-        addBtn.textContent = "+"
-
-        // create function to pass event listener to. 
-
-        let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
-        addBtn.setAttribute("id", "minus")
-        minusBtn.textContent = "-"
-
         let cartBtn = document.createElement("BUTTON");
         cartBtn.classList.add('add-cart');
         cartBtn.setAttribute('id', 'cart-button-id')
@@ -119,6 +107,9 @@ class Products {
         cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
             event.preventDefault()
 
+            // let cartCount = document.getElementById('item-count-id'); 
+            // console.log(cartCount.this)
+            
             let cartDivId = document.getElementById('cart-div-id').dataset.id
             let api = new ApiService;
 
@@ -126,8 +117,8 @@ class Products {
             .then(cartObject => {
 
                 const productInCart = new Cart(cartObject)
-
-
+                
+                
                 productInCart.putProductInCart(cartObject)
                 
 
@@ -142,8 +133,6 @@ class Products {
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
         certainProductDiv.appendChild(productCategory);
-        certainProductDiv.appendChild(addBtn)
-        certainProductDiv.appendChild(minusBtn);
         certainProductDiv.appendChild(cartBtn);
         
         document.body.appendChild(certainProductDiv)

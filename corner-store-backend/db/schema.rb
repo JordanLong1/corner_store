@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_012408) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "carts_products", id: false, force: :cascade do |t|
+  create_table "carts_products", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "product_id"
     t.index ["cart_id"], name: "index_carts_products_on_cart_id"
