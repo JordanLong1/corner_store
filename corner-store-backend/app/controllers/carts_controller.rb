@@ -26,7 +26,16 @@ class CartsController < ApplicationController
         end
 
         def update
-            
+            if params[:subtract_product_id]
+                # binding.pry
+                CartsProducts.where(cart_id: params[:cart_id], product_id: params[:subtract_product_id]).last.destroy
+                # binding.pry
+                cart = Cart.find(params[:cart_id])
+                cart.update(item_count: cart.products.count)
+                # binding.pry
+                # render json: cart
+            end
+
             cp = CartsProducts.create(cart_id: params[:cart_id], product_id: params[:product_id])
             cart = Cart.find(params[:cart_id])
             cart.update(item_count: cart.products.count)
