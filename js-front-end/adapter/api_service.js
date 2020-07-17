@@ -35,8 +35,8 @@ class ApiService {
 
     updateCartWithProduct(cartDivId, item) {
         // console.log(item)
-        return fetch (`${this.baseUrl}/carts_products`, {
-            method: "POST", 
+        return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
+            method: "PATCH", 
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -65,6 +65,24 @@ class ApiService {
         })
         .then(resp => resp.json())
     }
+
+    // updateCartWithProduct(cartDivId, item) {
+    //     // console.log(item)
+    //     return fetch (`${this.baseUrl}/carts_products`, {
+    //         method: "POST", 
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }, 
+    //         body: JSON.stringify({
+    //             cart_id: cartDivId,
+    //        product_id: item.id
+    //         })
+    //     })
+    //     .then(resp => resp.json())
+    //     console.log(cartDivId) // WORKING
+    // }
+
 
     // subtractProductFromCart(cartDivId, productInCart) {
     //     // console.log(cartDivId)
