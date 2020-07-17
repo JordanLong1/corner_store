@@ -122,7 +122,7 @@ class Cart {
         })
 
 
-        cartWithProduct.removeProductFromCart(); 
+        // cartWithProduct.removeProductFromCart(); 
 
         let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         minusBtn.setAttribute("id", "minus")
@@ -136,7 +136,12 @@ class Cart {
 
             api.subtractProductFromCart(cartDivId, productInfo)
 
-            .then(resp => console.log(resp))
+            .then(updatedCart => {
+
+                const newlyUpdatedCart = new Cart(updatedCart)
+
+                newlyUpdatedCart.subtractedItemCount(updatedCart)
+            })
         })
         // this.minusButtonInCart();
         // in the event listener 
@@ -153,6 +158,16 @@ class Cart {
         let cartPrice = document.getElementById('total-price-id')
         cartPrice.textContent = `Total Price - ${this.totalPrice}`
 
+    }
+
+    subtractedItemCount() {
+        // console.log(this)
+
+        let newItemCount = document.getElementById('item-count-id'); 
+        newItemCount.textContent = `Number of items - ${this.itemCount}`; 
+
+        let newTotalPrice = document.getElementById('total-price-id'); 
+        newTotalPrice.textContent = `Total Price - ${this.totalPrice}`; 
     }
 
     // addButtonInCart() {
