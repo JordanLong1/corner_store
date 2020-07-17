@@ -37,10 +37,16 @@ body {
     box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     width: 200px;
     text-align: center;
-    margin: 3em;
+    margin: 1em;
     padding: 5em;
     background-color: rgba(255, 166, 0, 0.342);
 }
+
+.each-product img {
+    width: 100%;
+    height: auto;
+}
+
 
 /* .each-product:hover {
     width: 250px;
@@ -51,6 +57,7 @@ li {
     position: relative;
     right: 21px;
     top: 65px;
+    border: solid;
 }
 
 
@@ -111,6 +118,8 @@ h4:hover {
 .container-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
+    /* text-align: center; */
+    
 }
 
 
@@ -179,6 +188,48 @@ h1:hover {
     background-color: black;
   
     
+}
+
+.close {
+    position:absolute;
+    top:0;
+    right:0;
+  
+    --accent-color: #0AF;
+}
+
+/* .close:hover {
+    border: solid;
+    
+} */
+
+
+.close.close::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    z-index: -1;
+    background-color: var(--accent-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.close.close:hover::before, 
+.close.close:focus::before {
+    transform: scaleX(1);
+}
+
+.close.close {
+    z-index: 1;
+}
+
+.close.close:hover, 
+.close.close:focus {
+    color: white;
 }
 
 
