@@ -51,9 +51,9 @@ class ApiService {
     }
 
     subtractProductFromCart(cartDivId, productInCart) {
-        console.log(cartDivId)
-        return fetch (`${this.baseUrl}/carts_product/${cartDivId}`, {
-            method: "delete", 
+        // console.log(cartDivId)
+        return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
+            method: "PATCH", 
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -66,6 +66,21 @@ class ApiService {
         .then(resp => resp.json())
     }
 
+    // subtractProductFromCart(cartDivId, productInCart) {
+    //     // console.log(cartDivId)
+    //     return fetch (`${this.baseUrl}/carts/${cartDivId}`, {
+    //         method: "PATCH", 
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }, 
+    //         body: JSON.stringify({
+    //             cart_id: cartDivId,
+    //             subtract_product_id: productInCart.id
+    //         })
+    //     })
+    //     .then(resp => resp.json())
+    // }
 
 
 }

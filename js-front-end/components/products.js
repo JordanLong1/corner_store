@@ -1,13 +1,14 @@
 // products clazz
 
 class Products {
-    constructor({title, description, price, quantity, category, id}) {
+    constructor({title, description, price, quantity, category, id, product_image}) {
         this.title = title; 
         this.description = description;
         this.price = price; 
         this.quantity = quantity;
         this.category = category;
         this.id = id;
+        this.productImage = product_image;
     }
 
     collectionOfProducts() {
@@ -22,6 +23,15 @@ class Products {
         let titleHeader = document.createElement('h4') // this is working
 
         titleHeader.textContent = this.title // this is working
+
+        let productPic = document.createElement("IMG"); 
+        productPic.setAttribute('class', 'products-images')
+        productPic.setAttribute('id', 'each-product-pic-id'); 
+
+        productPic.src = this.productImage
+
+
+        // console.log(this)
 
         let ulTag = document.createElement('ul')
         
@@ -54,6 +64,7 @@ class Products {
         ulTag.appendChild(priceLiTag)
         
         eachProductDiv.appendChild(titleHeader)
+        eachProductDiv.appendChild(productPic)
         eachProductDiv.appendChild(ulTag)
         eachProductDiv.appendChild(moreInfoBtn)
         container.appendChild(eachProductDiv)

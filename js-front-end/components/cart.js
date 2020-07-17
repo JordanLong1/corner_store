@@ -79,6 +79,7 @@ class Cart {
 
     putProductInCart(cartWithProduct) {
       
+        // console.log(cartWithProduct)
         const productInfo = cartWithProduct.products[cartWithProduct.products.length - 1]
         let cartDiv = document.getElementById('cart-div-id'); 
         let sideNavDiv = document.getElementById('side-nav-id');  
@@ -121,6 +122,8 @@ class Cart {
         })
 
 
+        cartWithProduct.removeProductFromCart(); 
+
         let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         minusBtn.setAttribute("id", "minus")
         minusBtn.textContent = "-"
@@ -149,7 +152,6 @@ class Cart {
 
         let cartPrice = document.getElementById('total-price-id')
         cartPrice.textContent = `Total Price - ${this.totalPrice}`
-
 
     }
 
