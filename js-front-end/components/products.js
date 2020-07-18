@@ -26,12 +26,9 @@ class Products {
 
         let productPic = document.createElement("IMG"); 
         productPic.setAttribute('class', 'products-images')
-        productPic.setAttribute('id', 'each-product-pic-id'); 
+        productPic.setAttribute('id', this.id); 
 
         productPic.src = this.productImage
-
-
-        // console.log(this)
 
         let ulTag = document.createElement('ul')
         
@@ -42,9 +39,10 @@ class Products {
         let moreInfoBtn = document.createElement("BUTTON") // works 
         moreInfoBtn.classList.add('btn') // works
         moreInfoBtn.textContent = 'Click to get more info!' // works
-
         moreInfoBtn.addEventListener("click", function(event) { //TAKE THIS OUT AND SEPERATE IT 
+            // console.log(event)
             event.preventDefault()
+
             container.style.display = 'none';
             let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
             let api = new ApiService;
@@ -60,7 +58,6 @@ class Products {
             })
         })
 
-       
         ulTag.appendChild(priceLiTag)
         
         eachProductDiv.appendChild(titleHeader)
@@ -69,7 +66,7 @@ class Products {
         eachProductDiv.appendChild(moreInfoBtn)
         container.appendChild(eachProductDiv)
 
-
+        return container
     }
 
     singleProduct() {
@@ -82,6 +79,10 @@ class Products {
 
         productName.textContent = this.title // working
 
+        let prodPic = document.getElementById(`${this.id}`); 
+        prodPic.src = this.productImage
+
+
         let closeSpan = document.createElement('span'); 
         closeSpan.setAttribute('class', 'close'); 
 
@@ -90,8 +91,9 @@ class Products {
         closeSpan.addEventListener('click', function(event) {
             event.preventDefault();
             certainProductDiv.style.display = 'none';
-            let allProducts = document.getElementById('container'); 
-            allProducts.style.display = 'grid';
+            let allProductsDiv = document.getElementById('container'); 
+            console.log(allProductsDiv)
+            allProductsDiv.style.display = 'grid';
         })
 
         let newUl = document.createElement('ul');
@@ -104,9 +106,11 @@ class Products {
         newUl.appendChild(newLi)
 
         let productDescription = document.createElement('p');
+        productDescription.setAttribute('class', 'description-ptag')
         productDescription.textContent = `About - ${this.description}`; 
         
         let productCategory = document.createElement('p');
+        productDescription.setAttribute('class', 'category-ptag')
         productCategory.textContent = `Category - ${this.category}`;
 
         let cartBtn = document.createElement("BUTTON");
@@ -140,6 +144,7 @@ class Products {
        
     
         certainProductDiv.appendChild(productName); 
+        certainProductDiv.appendChild(prodPic)
         certainProductDiv.appendChild(closeSpan);
         certainProductDiv.appendChild(newUl);
         certainProductDiv.appendChild(productDescription);
