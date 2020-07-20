@@ -39,6 +39,7 @@ class Cart {
     createSideNavForCart() {
         let cartContainer = document.getElementById('cart-div-id');
          
+        // move this into another function
         let sideNavDiv = document.createElement('div');
         sideNavDiv.setAttribute('class', 'side-nav');
         sideNavDiv.setAttribute('id', 'side-nav-id');
@@ -49,17 +50,19 @@ class Cart {
 
         let sideNavUl = document.createElement('ul'); 
 
+        // move this block of code into another function
         let liForItemCount = document.createElement('li'); 
         liForItemCount.setAttribute('class', 'item-count');
         liForItemCount.setAttribute('id', 'item-count-id');
         liForItemCount.textContent = `Number of items - ${this.itemCount}`
         
+        //move this block of code into another function
         let liForCartTotalPrice = document.createElement('li'); 
         liForCartTotalPrice.setAttribute('class', 'total-price');
         liForCartTotalPrice.setAttribute('id', 'total-price-id')
-
         liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
 
+        // move this block of code into another function
         let closeBtn = document.createElement("BUTTON"); 
         closeBtn.setAttribute('id', 'close-btn-id')
         closeBtn.setAttribute('class', 'close-btn')
@@ -115,6 +118,7 @@ class Cart {
         let sideNavDiv = document.getElementById('side-nav-id');  
         
 
+        // move this block of code into another function
         let cartProduct = document.createElement('div'); 
         cartProduct.setAttribute('class', 'product-in-cart');
         cartProduct.setAttribute('id', 'carts-product-id');
@@ -126,6 +130,7 @@ class Cart {
         let cartProductPrice = document.createElement('p'); 
         cartProductPrice.textContent = `Price - ${productInfo.price}`
 
+        // move this block of code into another function
         let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         addBtn.setAttribute("id", "plus")
         addBtn.setAttribute('class', 'product-in-cart-btns')
@@ -149,6 +154,7 @@ class Cart {
          
         })
 
+        // move all of this code into another seperate function
         let minusBtn = document.createElement("BUTTON") 
         minusBtn.setAttribute("id", "minus")
         minusBtn.setAttribute('class', 'product-in-cart-btns')

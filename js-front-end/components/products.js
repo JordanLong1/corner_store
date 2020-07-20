@@ -13,16 +13,16 @@ class Products {
 
     collectionOfProducts() {
 
-        let container = document.getElementById('container') // this line is working. gets product div
+        let container = document.getElementById('container') 
 
-        container.classList.add('container-div') // this is working
+        container.classList.add('container-div') 
 
         let eachProductDiv = document.createElement('div')
         eachProductDiv.classList.add('each-product')
 
-        let titleHeader = document.createElement('h4') // this is working
+        let titleHeader = document.createElement('h4') 
 
-        titleHeader.textContent = this.title // this is working
+        titleHeader.textContent = this.title 
 
         let productPic = document.createElement("IMG"); 
         productPic.setAttribute('class', 'products-images')
@@ -32,18 +32,18 @@ class Products {
 
         let ulTag = document.createElement('ul')
         
-        let priceLiTag = document.createElement('li') // this is working
+        let priceLiTag = document.createElement('li') 
         priceLiTag.setAttribute('certain-product-id', this.id)
         priceLiTag.textContent = `Price - $${this.price}` 
 
-        let moreInfoBtn = document.createElement("BUTTON") // works 
-        moreInfoBtn.classList.add('btn') // works
-        moreInfoBtn.textContent = 'Click to get more info!' // works
-        moreInfoBtn.addEventListener("click", function(event) { //TAKE THIS OUT AND SEPERATE IT 
-            // console.log(event)
+        // move this into another seperate function
+        let moreInfoBtn = document.createElement("BUTTON");
+        moreInfoBtn.classList.add('btn');
+        moreInfoBtn.textContent = 'Click to get more info!' 
+        moreInfoBtn.addEventListener("click", function(event) { 
             event.preventDefault()
             container.style.display = 'none';
-            let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
+            let prodId = this.previousElementSibling.firstChild.attributes[0].value 
             let api = new ApiService;
      
 
@@ -78,16 +78,13 @@ class Products {
 
         productName.textContent = this.title // working
 
-        // let prodPic = document.getElementById(`${this.id}`); 
         let prodPic = document.createElement("IMG")
         prodPic.src = this.productImage
 
-
+        // move everything pertaining to this block of code below to its own function
         let closeSpan = document.createElement('span'); 
         closeSpan.setAttribute('class', 'close'); 
-
         closeSpan.textContent = 'Close (X)';
-
         closeSpan.addEventListener('click', function(event) {
             event.preventDefault();
             certainProductDiv.style.display = 'none';
@@ -96,14 +93,13 @@ class Products {
         })
 
         let newUl = document.createElement('ul');
-
+        // move this block to its own func
         let newLi = document.createElement('li');
         newLi.setAttribute('class', 'single-product-li')
-
         newLi.textContent = `Price - $${this.price}`;
-
         newUl.appendChild(newLi)
 
+        // maybe think about moiving this block
         let productDescription = document.createElement('p');
         productDescription.setAttribute('class', 'description-ptag')
         productDescription.textContent = `About - ${this.description}`; 
@@ -116,6 +112,7 @@ class Products {
         cartBtn.classList.add('add-cart');
         cartBtn.setAttribute('id', 'cart-button-id')
     
+        // move this to its own func
         cartBtn.textContent = "Add to cart"
         let obj = this;
         cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
