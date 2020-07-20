@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-
-
 body {
     margin: 0;
     margin-left: 200px;
     display: block;
-    background-image: linear-gradient(to right, tan);
+    /* background-color: black; */
 }
 
 /* body::after {
@@ -28,6 +26,9 @@ body {
     grid-gap: 20px;
     padding-top: 10px;
     padding-bottom: 30px;
+    margin: 0 auto;
+        /* background-color: linear-gradient(to right,#0b0C10); */
+
 
 }
 
@@ -38,8 +39,12 @@ body {
     width: 200px;
     text-align: center;
     margin: 1em;
+    /* margin: 0 auto; */
+
     padding: 5em;
-    background-color: rgba(255, 166, 0, 0.342);
+    /* background-color: rgba(255, 166, 0, 0.342); */
+    background-color: white;
+
 }
 
 .each-product img {
@@ -47,6 +52,8 @@ body {
     height: auto;
     margin: 0 auto;
     transition: transform .5s ease;
+    border-color: black;
+    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
 /* .product-images {
@@ -73,7 +80,7 @@ li {
     position: relative;
     right: 21px;
     top: 65px;
-    border: solid;
+    /* border: solid; */
 }
 
 
@@ -125,6 +132,9 @@ h4 {
     position: relative;
     bottom: 75px;
     font-size: 25px;
+
+
+
 }
 
 h4:hover {
@@ -141,8 +151,8 @@ h4:hover {
 
 .certain-product {
     display: grid;
-   width: 500px;
-    height: 500px;
+   width: 550px;
+    height: 550px;
     box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 3em;
@@ -157,21 +167,80 @@ h4:hover {
     height: 300px;
     display: block;
     margin: 0 auto;
-    transition: transform .2s;
-
+    transition: transform .5s;
 } 
 
+.certain-product img:hover {
+    transform: scale(1.5);
 
-p {
+}
+
+.certain-product h2 {
+    position: relative;
+    bottom: 75px;
+    font-size: 25px;
+}
+
+.single-product-li {
+    text-align: center;
+    position: relative;
+    top: 10px;
+    font-size: 20px;
+}
+
+.description-ptag {
+    text-align: center;
+    position: relative;
+    bottom: 5px;
+    font-size: 20px;
+}
+
+.category-ptag {
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+    font-size: 20px;
+}
+
+.add-cart {
+    border: none;
+background: #404040;
+color: #ffffff !important;
+font-weight: 100;
+padding: 10px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+position: relative;
+bottom: 20px;
+}
+
+.add-cart:hover {
+    color: #42b0f5 !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: none;
+/* -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57); */
+transition: all 0.3s ease 0s;
+}
+
+
+/* p {
     position: relative;
     top: 20px;
-}
+} */
 
 
 h1 {
     text-align: center;
     font-family: 'Lobster', cursive;
-    font-size: 45px;
+    font-size: 60px;
+}
+
+h1:hover {
+    color: #42b0f5;
 }
 
 h1:hover {
@@ -181,19 +250,36 @@ h1:hover {
 }
 
  i {
-    font-size: 75px;
+    /* font-size: 75px;
     position: relative;
     top: 0px;
     left: 0px; 
     position:absolute;
-    color: gray;
+    color: gray; */
+    font-size: 40px;
+    position: absolute;
+    top: 15px;
+    left: 45px; 
+    height: 45px; 
+    width: 45px; 
+    border-radius: 3px;
+    
+ }
+
+ i span {
+     font-size: 25px;
+     line-height: 35px;
+     position: relative;
+     left: 30px; 
+
  }
 
 .side-nav{
-    width: 200px; 
-    height: 100vh; 
+    width: 250px; 
+    height: 100%; 
     position: fixed; 
-    background-color: #42b0f57a;
+    /* background-color: #42b0f57a; */
+    background-color: #1b1b1b;
     color: white; 
     top: 0; 
     left: 0; 
@@ -201,18 +287,113 @@ h1:hover {
     display:flex; 
     flex-direction: column;
     justify-content: space-between;
+} 
+
+.side-nav li {
+    color: white; 
+    font-size: 15px; 
+    font-weight: 600; 
+    /* line-height: 65px;  */
+    text-align: center;
+    /* background: #1e1e1e; */
+    letter-spacing: 1px;
+    position: relative;
+    bottom: 250px;
+}
+
+.side-nav h2 {
+    position: relative;
+    bottom: 95px; 
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+}
+
+.close-btn {
+    position: relative;
+    bottom: 225px;
+    left: 190px;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ed3330;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+}
+
+.close-btn:hover {
+    background: #ed3330;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
 }
 
 .product-in-cart {
-    border-style: solid;
+    /* border-style: solid;
     border-color: white;
-    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-    width: 20x;
-    text-align: center;
+    box-shadow:  0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1); */
+    /* width: 100%;
+    height: 15px; */
+    /* text-align: center;
     margin: 1em;
-    padding: 1em;
-    background-color: black;
+    padding: 1em; */
+    /* background-color:black;
+    */
+    position: relative;
+    top: 60px;
+    display:block; 
+    width: 100%; 
+    height: 100px;
+    color: black;
+    line-height: 60px; 
+    border-bottom: 3px solid cyan;
+    background-color: white;
+    text-align: center;
 }
+
+.product-in-cart h4 {
+    position: relative;
+     bottom: 30px;
+}
+
+.product-in-cart p {
+    position: relative;
+    bottom: 50px;
+} 
+
+.product-in-cart button {
+    position: relative;
+    bottom: 100px;
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    /* padding: 20px; */
+    text-transform: uppercase;
+    border-radius: 2px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+.product-in-cart button:hover {
+    color: #404040 !important;
+    font-weight: 700 !important;
+    /* letter-spacing: 3px; */
+    background: none;
+    /* -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57); */
+    transition: all 0.3s ease 0s;
+}
+
+/* .product-in-cart:hover {
+    border-left: 3px solid transparent; 
+    border-left-color: cyan;
+} */
 
 .close {
     position:absolute;
