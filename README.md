@@ -1,1 +1,3 @@
 # corner_store
+
+In this app that I named "Corner Store" I wanted to do a shopping cart, simple e-commerce style of app. I went to a couple of sites and picked out 15 products to use for my products and built out the cart and product functionality use a has many, belongs to, and has many through relationship with carts products. This project was built with a rails backend using postgres as my database and a javascript, html, and css front-end. 
