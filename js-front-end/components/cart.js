@@ -11,7 +11,7 @@ class Cart {
         let iTag = document.createElement('i');
         iTag.setAttribute("class", "fas fa-shopping-cart");
         iTag.setAttribute("id", "icon-id");
-
+        
         document.body.appendChild(iTag)
 
 
@@ -37,11 +37,15 @@ class Cart {
     }
 
     createSideNavForCart() {
-        let cartContainer = document.getElementById('cart-div-id'); // working
+        let cartContainer = document.getElementById('cart-div-id');
+         
         let sideNavDiv = document.createElement('div');
         sideNavDiv.setAttribute('class', 'side-nav');
         sideNavDiv.setAttribute('id', 'side-nav-id');
         sideNavDiv.style.display = 'none';
+
+        let sideNavHeader = document.createElement('h2'); 
+        sideNavHeader.textContent = 'My Cart'
 
         let sideNavUl = document.createElement('ul'); 
 
@@ -50,26 +54,43 @@ class Cart {
         liForItemCount.setAttribute('id', 'item-count-id');
         liForItemCount.textContent = `Number of items - ${this.itemCount}`
         
-
         let liForCartTotalPrice = document.createElement('li'); 
         liForCartTotalPrice.setAttribute('class', 'total-price');
         liForCartTotalPrice.setAttribute('id', 'total-price-id')
 
         liForCartTotalPrice.textContent = `Total Price - ${this.totalPrice}`;
 
+        let closeBtn = document.createElement("BUTTON"); 
+        closeBtn.setAttribute('id', 'close-btn-id')
+        closeBtn.setAttribute('class', 'close-btn')
+        closeBtn.textContent = "Close"
+
         sideNavUl.appendChild(liForItemCount); 
         sideNavUl.appendChild(liForCartTotalPrice); 
-
+    
         sideNavDiv.appendChild(sideNavUl);  
-        
+        sideNavDiv.appendChild(sideNavHeader);
+        sideNavDiv.appendChild(closeBtn);
         cartContainer.appendChild(sideNavDiv);
 
+        this.sideNavPopsOnClickOfIcon();
+        this.closeSideNavOnClickOnMainPage();
+        this.closeSideNavOnClickOfCloseButton(); 
+            
+    }
+
+    sideNavPopsOnClickOfIcon() {
+        let cartContainer = document.getElementById('cart-div-id')
+        let sideNavDiv = document.getElementById('side-nav-id')
         cartContainer.addEventListener('click', function(e) {
             sideNavDiv.style.display = 'block'; 
-
+            
         })
+    }
 
+    closeSideNavOnClickOnMainPage() {
         let pageContainer = document.getElementById('container'); 
+        let sideNavDiv = document.getElementById('side-nav-id')
 
         pageContainer.addEventListener('click', function(e) {
             sideNavDiv.style.display = 'none';
@@ -77,10 +98,19 @@ class Cart {
         })
     }
 
+    closeSideNavOnClickOfCloseButton() {
+        let closeBtn = document.getElementById('close-btn-id')
+        let sideNavDiv = document.getElementById('side-nav-id')
+
+        closeBtn.addEventListener('click', function(e) {
+            sideNavDiv.style.display = 'none';
+        })
+    }
+
     putProductInCart(cartWithProduct) {
       
-        // console.log(cartWithProduct)
         const productInfo = cartWithProduct.products[cartWithProduct.products.length - 1]
+        console.log(productInfo.id)
         let cartDiv = document.getElementById('cart-div-id'); 
         let sideNavDiv = document.getElementById('side-nav-id');  
         
@@ -88,45 +118,42 @@ class Cart {
         let cartProduct = document.createElement('div'); 
         cartProduct.setAttribute('class', 'product-in-cart');
         cartProduct.setAttribute('id', 'carts-product-id');
-
+        cartProduct.setAttribute('data-id', productInfo.id)
+        console.log(cartProduct)
         let cartProductHeader = document.createElement('h5'); 
         cartProductHeader.textContent = `${productInfo.title}`; 
-
-        // will need to create image info
 
         let cartProductPrice = document.createElement('p'); 
         cartProductPrice.textContent = `Price - ${productInfo.price}`
 
         let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
         addBtn.setAttribute("id", "plus")
-        addBtn.textContent = "+"
-        // this.addButtonInCart(); 
+        addBtn.setAttribute('class', 'product-in-cart-btns')
+        addBtn.textContent = "Add Another +"
         addBtn.addEventListener('click', function(e) {
             event.preventDefault();
 
-            // cart id & product & then pass to api serv to update the cart?
             let cartDivId = document.getElementById('cart-div-id').dataset.id
 
             let api = new ApiService; 
 
             api.updateCartWithProduct(cartDivId, productInfo) 
             .then(cartObject => {
+                // console.log(cartObject)
                 const productInCart = new Cart(cartObject)
-                
-                
-                productInCart.putProductInCart(cartObject)
+                productInCart.rebuildCartBasedOnAddOrSubtract(cartObject)
+          
             })
 
             
          
         })
 
-
-        // cartWithProduct.removeProductFromCart(); 
-
-        let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
+        let minusBtn = document.createElement("BUTTON") 
         minusBtn.setAttribute("id", "minus")
-        minusBtn.textContent = "-"
+        minusBtn.setAttribute('class', 'product-in-cart-btns')
+
+        minusBtn.textContent = "Take one off - "
         minusBtn.addEventListener('click', function(e) {
             event.preventDefault(); 
             let cartDivId = document.getElementById('cart-div-id').dataset.id
@@ -137,14 +164,20 @@ class Cart {
             api.subtractProductFromCart(cartDivId, productInfo)
 
             .then(updatedCart => {
-
+                let foundProduct = updatedCart.products.find(p => p.id === productInfo.id)
+                if (!foundProduct) {
+                    let divsInCart = document.querySelectorAll('.product-in-cart');
+                    let divArr = Array.from(divsInCart)
+                    let foundDiv = divArr.find(div => div.dataset.id == productInfo.id)
+                    let parentDiv = document.getElementById('side-nav-id'); 
+                    parentDiv.removeChild(foundDiv)
+                } 
                 const newlyUpdatedCart = new Cart(updatedCart)
 
-                newlyUpdatedCart.subtractedItemCount(updatedCart)
+                newlyUpdatedCart.rebuildCartBasedOnAddOrSubtract()
             })
         })
-        // this.minusButtonInCart();
-        // in the event listener 
+      
 
         cartProduct.appendChild(cartProductHeader); 
         cartProduct.appendChild(cartProductPrice); 
@@ -160,36 +193,18 @@ class Cart {
 
     }
 
-    subtractedItemCount() {
-        // console.log(this)
+    rebuildCartBasedOnAddOrSubtract() {
+        let cartDiv = document.getElementById('carts-product-id')
 
         let newItemCount = document.getElementById('item-count-id'); 
         newItemCount.textContent = `Number of items - ${this.itemCount}`; 
-
+    
         let newTotalPrice = document.getElementById('total-price-id'); 
         newTotalPrice.textContent = `Total Price - ${this.totalPrice}`; 
-    }
 
-    // addButtonInCart() {
-    //     // console.log(this)
-    //     // this = Cart object with item count & total price
-    //     // on every click it should increment the total price and item count
+     }
 
-    //     // let addBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
-    //     // addBtn.setAttribute("id", "plus")
-    //     // addBtn.textContent = "+"
-    // }
-
-    // minusButtonInCart() {
-    //     console.log(this)
-    //     // this = Cart Object with item count, total price and an id 
-    //     // on click it should decrement the item count and subtract the price
-
-    //     // let minusBtn = document.createElement("BUTTON") // SEPERATE FUNCTION for event listener
-    //     // minusBtn.setAttribute("id", "minus")
-    //     // minusBtn.textContent = "-"
-    // }
-
+   
    
     
 
