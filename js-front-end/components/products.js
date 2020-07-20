@@ -42,7 +42,6 @@ class Products {
         moreInfoBtn.addEventListener("click", function(event) { //TAKE THIS OUT AND SEPERATE IT 
             // console.log(event)
             event.preventDefault()
-
             container.style.display = 'none';
             let prodId = this.previousElementSibling.firstChild.attributes[0].value // target
             let api = new ApiService;
@@ -79,7 +78,8 @@ class Products {
 
         productName.textContent = this.title // working
 
-        let prodPic = document.getElementById(`${this.id}`); 
+        // let prodPic = document.getElementById(`${this.id}`); 
+        let prodPic = document.createElement("IMG")
         prodPic.src = this.productImage
 
 
@@ -92,7 +92,6 @@ class Products {
             event.preventDefault();
             certainProductDiv.style.display = 'none';
             let allProductsDiv = document.getElementById('container'); 
-            console.log(allProductsDiv)
             allProductsDiv.style.display = 'grid';
         })
 
@@ -110,7 +109,7 @@ class Products {
         productDescription.textContent = `About - ${this.description}`; 
         
         let productCategory = document.createElement('p');
-        productDescription.setAttribute('class', 'category-ptag')
+        productCategory.setAttribute('class', 'category-ptag')
         productCategory.textContent = `Category - ${this.category}`;
 
         let cartBtn = document.createElement("BUTTON");
@@ -122,9 +121,9 @@ class Products {
         cartBtn.addEventListener('click', function(e) { //SEPERATE FUNCTION
             event.preventDefault()
 
-            // let cartCount = document.getElementById('item-count-id'); 
-            // console.log(cartCount.this)
-            
+            let cartNavigation = document.getElementById('side-nav-id'); 
+            cartNavigation.style.display = 'block';
+
             let cartDivId = document.getElementById('cart-div-id').dataset.id
             let api = new ApiService;
 
